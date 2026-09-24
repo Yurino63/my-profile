@@ -3,9 +3,44 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>テスト</title>
+    <title>自己紹介</title>
+    <script src="https://cdn.tailwindcss.com"></script>
   </head>
-  <body>
-    <h1>テスト</h1>
+
+  <body class="min-h-screen bg-purple-100 px-4 py-8">
+    <div class="mx-auto mb-10 w-fit rounded-lg bg-purple-200 px-8 py-4 text-center shadow">
+      <h1 class="text-4xl font-bold text-gray-800 md:text-6xl">
+        自己紹介
+      </h1>
+    </div>
+    <div class="mx-auto flex max-w-5xl flex-col items-center justify-center gap-8 md:flex-row">
+      <div class="w-full max-w-xl rounded-lg bg-purple-200 p-6 text-center shadow-md">
+        <h2 class="text-2xl font-semibold text-gray-800 md:text-3xl">
+          あだ名　友里ちゃん
+        </h2>
+        <p class="mt-4 text-lg font-semibold text-gray-800">
+          はじめまして！これからよろしくお願いします！
+        </p>
+        <ul class="mt-6 space-y-2 text-left text-gray-800">
+          <li>趣味：アニメ・漫画・音楽を聴くこと</li>
+          <li class="pl-7 text-sm text-gray-600">
+            J-POP、K-POP、ボカロなど色々聴きます
+          </li>
+          <li>MBTI：ISFP</li>
+          <li>出身：埼玉</li>
+          <li>大学：中央大学経済学部</li>
+          <li>好きなもの：シマエナガ</li>
+        </ul>
+        <a href="https://www.instagram.com/_yuri_0522" class="mt-6 inline-block transition hover:scale-110">
+          <img src="./Instarogo.png" alt="Instagramのロゴ" class="h-10 w-10 rounded-lg">
+        </a>
+        <p class="mt-2 text-sm text-gray-600">
+          Instagram
+        </p>
+      </div>
+      <div class="w-full max-w-sm">
+        <img src="./iStock-1193818365-min-scaled.avif" alt="シマエナガの写真" class="w-full rounded-lg shadow-md">
+      </div>
+    </div>
   </body>
 </html>
