@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>新規登録フォーム</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen bg-gray-50 flex items-center justify-center p-6">
+  <div class="w-full max-w-lg bg-white rounded-xl shadow-sm border border-gray-200 p-8">
+    <h1 class="text-xl font-bold text-gray-900 mb-1">新規登録</h1>
+    <p class="text-sm text-gray-500 mb-6">すべての項目をご入力の上、登録を完了してください。</p>
+    <p id="message" role="alert" class="hidden mb-4 rounded-lg px-4 py-3 text-sm font-bold"></p>
+    <form id="signup-form" novalidate class="space-y-6">
+      <div>
+        <label for="name" class="block text-sm font-medium text-gray-700 mb-1.5">
+          名前
+        </label>
+        <input type="text" id="name" required
+               autocomplete="name" placeholder="例: 山田 太郎"
+               class="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2 text-sm text-gray-900 placeholder-gray-400">
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium text-gray-700 mb-1.5">
+          メールアドレス
+        </label>
+        <input type="email" id="email" required
+               autocomplete="email" placeholder="例: yamada@gmaill.com"
+               class="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2 text-sm text-gray-900 placeholder-gray-400">
+      </div>
+      <div>
+        <label for="password" class="block text-sm font-medium text-gray-700 mb-1.5">
+          パスワード
+        </label>
+        <input type="password" id="password" required
+               autocomplete="new-password" placeholder="8文字以上で入力"
+               class="w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2 text-sm text-gray-900 placeholder-gray-400">
+      </div>
+      <div class="flex items-start gap-2">
+        <input type="checkbox" id="terms" required
+               class="mt-0.5 size-4 rounded border-gray-300 text-blue-600 cursor-pointer">
+        <label for="terms" class="text-sm text-gray-700 select-none cursor-pointer">
+          利用規約に同意します
+        </label>
+      </div>
+      <button type="submit"
+              class="w-full rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white shadow-sm hover:bg-blue-700 active:bg-blue-800 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2">
+        登録する
+      </button>
+    </form>
+  </div>
+
+  <script>
+    const form = document.getElementById("signup-form");
+    const msg  = document.getElementById("message");
+    function showMessage(text, isError) {
+      msg.textContent = text;
+      msg.className = isError
+        ? "mb-4 rounded-lg bg-red-50 border border-red-200 px-4 py-3 text-sm font-bold text-red-700"
+        : "mb-4 rounded-lg bg-green-50 border border-green-200 px-4 py-3 text-sm font-bold text-green-800";
+    }
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name     = document.getElementById("name").value.trim();
+      const email    = document.getElementById("email").value.trim();
+      const password = document.getElementById("password").value;
+      const terms    = document.getElementById("terms").checked;
+      if (name === "") {
+        showMessage("名前を入力してください。", true);
+        return;
+      }
+      if (email === "") {
+        showMessage("メールアドレスを入力してください。", true);
+        return;
+      }
+      if (password === "") {
+        showMessage("パスワードを入力してください。", true);
+        return;
+      }
+      if (password.length < 8) {
+        showMessage("パスワードは8文字以上で入力してください。", true);
+        return;
+      }
+      if (!terms) {
+        showMessage("利用規約に同意してください。", true);
+        return;
+      }
+      showMessage("登録完了！", false);
+    });
+  </script>
+</body>
+</html>

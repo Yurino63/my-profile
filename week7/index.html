@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TODOリスト</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-50">
+  <div class="mx-auto mt-10 max-w-md rounded-lg bg-white p-6 shadow">
+    <h1 class="text-3xl font-bold text-center text-blue-800">
+      TODOリスト
+    </h1>
+    <div class="mt-6 flex gap-2">
+      <input id="taskInput" type="text" placeholder="タスクを入力" class="flex-1 rounded border p-2">
+      <button onclick="addTask()" class="rounded bg-blue-500 px-4 text-white hover:bg-blue-600">
+        追加
+    </button>
+    </div>
+    <ul id="taskList" class="mt-6 space-y-2"></ul>
+  </div>
+  <script>
+    function addTask() {
+      const input = document.getElementById("taskInput");
+      const text = input.value;
+      if (text === "") {
+        return;
+      }
+      const li = document.createElement("li");
+      li.className =
+        "flex justify-between items-center rounded bg-gray-100 p-3";
+      const span = document.createElement("span");
+      span.textContent = text;
+      const completeButton = document.createElement("button");
+      completeButton.textContent = "完了";
+      completeButton.className =
+        "rounded bg-green-500 px-3 py-1 text-white";
+      completeButton.onclick = function() {
+        span.classList.add("line-through");
+      };
+      const deleteButton = document.createElement("button");
+      deleteButton.textContent = "削除";
+      deleteButton.className =
+        "rounded bg-red-500 px-3 py-1 text-white";
+      deleteButton.onclick = function() {
+        if (confirm("このタスクを削除しますか？")) {
+          li.remove();
+        }
+      };
+      li.appendChild(span);
+      li.appendChild(completeButton);
+      li.appendChild(deleteButton);
+      document.getElementById("taskList").appendChild(li);
+      input.value = "";
+    }
+  </script>
+</body>
+</html>
