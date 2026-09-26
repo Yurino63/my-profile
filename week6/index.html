@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BMI計算</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-blue-50">
+  <div class="mx-auto mt-10 max-w-md rounded-lg bg-white p-6 shadow">
+    <h1 class="text-center text-3xl font-bold text-blue-800">
+      BMI計算
+    </h1>
+    <div class="mt-6">
+      <div class="font-semibold">
+        身長（cm）
+      </div>
+      <input id="height" type="number" placeholder="例：170" class="mt-2 w-full rounded border border-gray-300 p-3">
+    </div>
+    <div class="mt-4">
+      <div class="font-semibold">
+        体重（kg）
+      </div>
+      <input id="weight" type="number" placeholder="例：60" class="mt-2 w-full rounded border border-gray-300 p-3">
+    </div>
+    <button onclick="calculateBMI()" class="mt-6 w-full rounded bg-blue-600 p-3 font-bold text-white hover:bg-blue-700">
+    　計算
+    </button>
+    <div
+      id="result"
+      class="mt-6 text-center text-lg">
+    </div>
+  </div>
+
+
+  <script>
+    function calculateBMI() {
+
+      const height = Number(document.getElementById("height").value);
+      const weight = Number(document.getElementById("weight").value);
+
+      const result = document.getElementById("result");
+
+      if (height <= 0 || weight <= 0) {
+        result.textContent =
+          "身長と体重を入力してください。どちらも0より大きい数値を入力してください。";
+        result.className = "mt-6 text-center font-semibold text-red-600";
+        return;
+      }
+
+      const heightMeter = height / 100;
+
+      const bmi = weight / (heightMeter * heightMeter);
+
+      let judgment;
+
+      if (bmi < 18.5) {
+        judgment = "痩せ型";
+      } else if (bmi < 25) {
+        judgment = "普通";
+      } else {
+        judgment = "肥満";
+      }
+
+      result.innerHTML =
+        "あなたのBMIは <span class='text-2xl font-bold text-blue-700'>" +
+        bmi.toFixed(1) +
+        "</span> です。<br>" +
+        "判定：<span class='font-bold'>" +
+        judgment +
+        "</span>";
+
+      result.className = "mt-6 text-center text-lg text-gray-700";
+    }
+  </script>
+</body>
+</html>
